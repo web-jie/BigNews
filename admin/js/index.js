@@ -22,4 +22,21 @@ $('.logout').click(function(e){
 })
 // console.log(BigNew)
 
+//创建点击事件左侧导航栏
+$('.level01').click(function(){
+  // 排他思想
+  $(this).addClass('active').siblings().removeClass('active');
+  //判断点击相邻的属性为level02的属性时，返回true
+  if($(this).next().hasClass('level02')){
+    $(this).next().slideToggle();
+    $(this).find('b').toggleClass('rotate0');
+    $('.level02 li').first()[0].click();
+}else{
+  $('.level02>li').removeClass('active')
+}
+//设置二级目录选中效果
+$('.level02 li').click(function(){
+  $(this).addClass('active').siblings().removeClass('active');
+})
+})
 })
