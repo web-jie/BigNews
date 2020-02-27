@@ -43,7 +43,7 @@ $(function () {
   })
   $('a[target="main_frame"]').click(function(e){
     e.preventDefault();
-    console.log('被点击了');
+    // console.log('被点击了');
     $('iframe').attr({
       name: 'user',
       src: 'user.html'
