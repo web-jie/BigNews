@@ -15,8 +15,10 @@ $(function(){
 //文件浏览
 $('#exampleInputFile').on('change', function(){
   const file = this.files[0];
+if(file){
   const url = URL.createObjectURL(file);
   $('.user_pic').attr({src: url})
+}
 })
 //上传数据
 $('#form').on('submit',function(e){
@@ -29,9 +31,9 @@ $('#form').on('submit',function(e){
     contentType: false,
     processData: false,
     dataType: "json",
-    headers:{
-      Authorization: localStorage.getItem('key')
-    },
+    // headers:{
+    //   Authorization: localStorage.getItem('key')
+    // },
     success: function (response) {
       // console.log(response);
       if(response.code === 200){

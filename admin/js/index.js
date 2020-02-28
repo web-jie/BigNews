@@ -22,7 +22,7 @@ $(function () {
   })
   // console.log(BigNew)
     //设置二级目录选中效果
-    $('.level02 li').click(function () {
+    $('.level02 li ').click(function () {
       $(this).addClass('active').siblings().removeClass('active');
     })
   //创建点击事件左侧导航栏
@@ -35,13 +35,13 @@ $(function () {
       //使这个三角旋转
       $(this).find('b').toggleClass('rotate0');
       //当点击“文件管理”，默认选中第一个li
-      $('.level02 li a').first().click();
+      $('.level02 li a').first()[0].click();
     } else {
       $('.level02 li').removeClass('active')
     }
 
   })
-  $('a[target="main_frame"]').click(function(e){
+  $('.user_center_link').click(function(e){
     e.preventDefault();
     // console.log('被点击了');
     $('iframe').attr({

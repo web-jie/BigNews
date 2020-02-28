@@ -1,5 +1,21 @@
 /* 沙箱模式 */
+// 全局添加请求头
 (function(w){
+    $.ajaxSetup({
+        headers:{
+            Authorization: localStorage.getItem('key')
+          },
+        beforeSend: function(){
+        },
+        error: function(){
+            alert('失败')
+            // 如果失败的话提示用户并返回登录页
+            location.href = './login.html'
+        },
+        complete: function(){
+        }
+    })
+
     var baseURL = 'http://localhost:8080/api/v1'
     var BigNew = {
         baseURL:baseURL,//基地址
@@ -25,4 +41,6 @@
 
     //暴露接口
     w.BigNew = BigNew;
-})(window);
+})(window)
+
+
