@@ -13,39 +13,34 @@ $(function(){
     }
   });
 //文件浏览
-$('#exampleInputFile').on('change', function(){
+$('#exampleInputFile').change(function(){
   const file = this.files[0];
-if(file){
-  const url = URL.createObjectURL(file);
-  $('.user_pic').attr({src: url})
-}
+  
+  let url = URL.createObjectURL(file);
+  console.log(url);
+  $('.user_pic').attr('src',url)
 })
+
 //上传数据
-$('#form').on('submit',function(e){
-  e.preventDefault();  //preventDefault
-  console.log(this);
+$('.btn-success').click(function(e){
+  e.preventDefault()
+  let fd = new FormData(this.form);
   $.ajax({
     type: "post",
     url: BigNew.user_edit,
-    data: new FormData(this),
+    data: fd,
     contentType: false,
     processData: false,
     dataType: "json",
-    // headers:{
-    //   Authorization: localStorage.getItem('key')
-    // },
     success: function (response) {
-      // console.log(response);
-      if(response.code === 200){
-        $('.modal').modal();
-        $('.modal-body p').html('修改成功');
-        // 在此页面重新加载此页面
-        window.parent.location.reload()
-      }
-      
+      console.log(response)
+     if(response.code === 200){
+      let imgSrc = $('img.user_pic').attr('src');
+      let nickname = $('.nickname').val().trim();
+      window.parent.$('.user_info img, .user_center_link img').attr('src',imgSrc)
+      window.parent.$('.user_info span strong')
+     }
     }
   });
-  
 })
-
 })

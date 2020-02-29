@@ -1,16 +1,23 @@
 /* 沙箱模式 */
 // 全局添加请求头
 (function(w){
+
     $.ajaxSetup({
         headers:{
             Authorization: localStorage.getItem('key')
           },
-        beforeSend: function(){
+        beforeSend : function(xhr){
+
         },
         error: function(){
-            alert('失败')
-            // 如果失败的话提示用户并返回登录页
-            location.href = './login.html'
+
+            $('.modal-body p').html('请重新登录')
+                $('.modal').modal()
+            // // 如果失败的话提示用户并返回登录页
+            $('.fanh').click(function(){
+                location.href = './login.html'
+            })
+           
         },
         complete: function(){
         }

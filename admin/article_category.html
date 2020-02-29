@@ -14,9 +14,55 @@
     <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
+    <!-- <script src="./libs/template-web.js"></script> -->
+    <script src="./js/http.js"></script>
+    <script src="./js/article_category.js"></script>
+    <script id="sprose" type="text/html">
+        {{ each  }}
+
+                <tr>
+                    <td class="name">{{ $value.name }}</td>
+                    <td class='slug'>{{ $value.slug }}</td>
+                    <td class="text-center">
+                        <a href="javascript:void(0)" data-toggle="modal" class=" btn btn-info btn-xs" data-id='{{ $value.id }}'>编辑</a>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-xs"
+                        data-id="{{ $value.id }}">删除</a>
+                    </td>
+                </tr>
+            {{ /each }}
+    </script>
 </head>
 
 <body>
+    <!-- 导入模态框 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">新增</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label ">名称:</label>
+                  <input type="text" class="form-control val1" id="recipient-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Slug:</label>
+                  <input type="text" class="form-control form-control2 val2" id="message-text">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="container-fluid">
         <div class="common_title">
             文章类别管理
