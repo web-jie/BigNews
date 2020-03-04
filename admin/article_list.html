@@ -11,8 +11,33 @@
     <link rel="stylesheet" href="./css/iconfont.css">
     <link rel="stylesheet" href="./css/main.css">
     <script src="./libs/jquery-1.12.4.min.js"></script>
+    <script src="./js/http.js"></script>
     <!-- 引入模板引擎js文件 -->
+    <script src="./libs/jquery.twbsPagination.js"></script>
     <script src="./libs/template-web.js"></script>
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/article_list.js"></script>
+    <script id="category_list" type="text/html">
+    <option >所有分类</option>
+    {{ each }}
+        <option value='{{ $value.id }}'>{{ $value.name }}</option>
+    {{ /each }}
+    </script>
+    <script id="query_list" type="text/html">
+        {{ each data.data }}
+        <tr>
+            <td>{{ $value.title }}</td>
+            <td>{{ $value.author }}</td>
+            <td>{{ $value.category }}</td>
+            <td class="text-center">{{ $value.date }}</td>
+            <td class="text-center">{{ $value.state }}</td>
+            <td class="text-center">
+                <a href="article_edit.html?id={{ $value.id }}" class="btn btn-default btn-xs">编辑</a>
+                <a href="javascript:void(0);" data-id="{{ $value.id }}" class="btn btn-danger btn-xs delete">删除</a>
+            </td>
+        </tr>
+        {{ /each }}
+    </script>
 </head>
 
 <body>
@@ -69,7 +94,8 @@
                 </tbody>
             </table>
             <div class="row text-center">
-            </div>
+                <ul id="pagination" class="pagination-sm"></ul>
+        </div>
         </div>
     </div>
 </body>
